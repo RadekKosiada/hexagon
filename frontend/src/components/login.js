@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from '../contexts/authContext';
 
 function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -15,9 +16,19 @@ export default function LoginForm() {
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
 
-  const handleSubmit = e => {
+  const { login } = useAuth();
+
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(email, password);
+
+    try {
+      await login(email, password);
+      
+    } catch {
+      console.log('User cannot be logged in')
+    }
+    
   };
 
   return (
@@ -27,6 +38,7 @@ export default function LoginForm() {
         type="email"
         value={email}
         onChange={setEmail}
+        required
       />
 
       <input
@@ -34,6 +46,7 @@ export default function LoginForm() {
         type="password"
         value={password}
         onChange={setPassword}
+        required
       />
       <button>Submit</button>
     </form>
