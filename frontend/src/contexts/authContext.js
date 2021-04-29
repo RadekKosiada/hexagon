@@ -26,7 +26,6 @@ export function AuthProvider({children}) {
 
   auth.onAuthStateChanged(user => {
     setCurrentUser(user);
-    console.log('user: ', user);
   });
 
   const value = {
