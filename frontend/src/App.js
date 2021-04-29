@@ -1,6 +1,7 @@
 import Data from "./components/getData";
 import LoginForm from "./components/login";
 import Orders from "./components/orders";
+import PrivateRoute from "./components/privateRoute";
 import { AuthProvider } from "./contexts/authContext";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -13,7 +14,7 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route exact path="/" component={LoginForm} />
-            <Route path="/orders" component={Orders} />
+            <PrivateRoute path="/orders" component={Orders} />
           </Switch>
         </AuthProvider>
       </BrowserRouter>
