@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from '../contexts/authContext';
+import { useHistory } from "react-router-dom";
 
 function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -15,6 +16,7 @@ export default function LoginForm() {
   
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
+  const history = useHistory();
 
   const { login } = useAuth();
 
@@ -24,7 +26,7 @@ export default function LoginForm() {
 
     try {
       await login(email, password);
-      
+      history.push('/orders');
     } catch {
       console.log('User cannot be logged in')
     }
