@@ -24,7 +24,7 @@ export default function Order() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/orders' + currentUser.uid)
+    fetch("/orders" + currentUser.uid)
       .then(response => {
         if (response.ok && isMounted) {
           return response.json();
@@ -43,11 +43,23 @@ export default function Order() {
     };
   });
 
+  function goToOrderDetails(event) {
+    let orderId = event.target.getAttribute('data-id');
+    console.log('order details clicked', orderId);
+    // history.push("/orderDetails/" + orderId);
+  }
+
   return (
     <div>
       <button onClick={handleLogout}>Logout</button>
-      <p>Order title: {title}</p>
-      <p>Booking date: {bookingDate}</p>
+      <div 
+      key={0} 
+      data-id={0}
+      onClick={goToOrderDetails}
+      >
+        <p>Order title: {title}</p>
+        <p>Booking date: {bookingDate}</p>
+      </div>
       <p>{title}</p>
     </div>
   );
