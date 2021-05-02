@@ -15,6 +15,8 @@ function useInput(initialValue) {
 export default function NewOrder() {
   console.log("new order loaded");
 
+  const { currentUser } = useAuth();
+  console.log(useAuth);
   const history = useHistory();
   const [name, setName] = useInput([""]);
   const [title, setTitle] = useInput([""]);
@@ -24,8 +26,31 @@ export default function NewOrder() {
     e.preventDefault();
     console.log(name, title, address);
 
+    const newOrderObject = {
+      address: {
+        city: address,
+      },
+      bookingDate: Date.now(),
+      customer: {
+        name: name,
+      },
+      title: title,
+      uid: currentUser.uid
+    };
+
+    console.log(newOrderObject);
+
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+			  "Accept": "application/json"
+      },
+      body: JSON.stringify(newOrderObject)
+    };
+
     try {
-      // await makeNewOrder(name, title, address, date);
+      await fetch('/make-new-order', fetchOptions)
       history.push("/orders");
     } catch {
       console.log("Order cannot be made.");
@@ -51,16 +76,8 @@ export default function NewOrder() {
           required
         />
 
-        {/* <input
-          placeholder="Date"
-          type="number"
-          value={bookingDate}
-          onChange={setBookingDate}
-          required
-        /> */}
-
         <input
-          placeholder="Address"
+          placeholder="City"
           type="title"
           value={address}
           onChange={setAddress}

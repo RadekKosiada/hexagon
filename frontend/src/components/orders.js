@@ -46,7 +46,7 @@ export default function Order() {
   function goToOrderDetails(event) {
     let orderId = event.target.getAttribute('data-id');
     console.log('order details clicked', orderId);
-    // history.push("/orderDetails/" + orderId);
+    // history.push("/order-details/" + orderId);
   }
 
   function goToNewOrder() {

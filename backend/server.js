@@ -32,6 +32,10 @@ app.get("/orders:id", async (request, response) => {
   }
 });
 
+app.post("/make-new-order", (request, response) => {
+  console.log("Request body: ", request.body);
+});
+
 
 app.listen(port, () => {
   console.log(`Express server is running on ${port}`);
