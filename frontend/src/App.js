@@ -15,7 +15,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={LoginForm} />
             <PrivateRoute path="/orders" component={Orders} />
-            <PrivateRoute path={"/orderDetails/:id" } component={OrderDetails} />
+            <PrivateRoute path={"/order-details/:id" } component={OrderDetails} />
             <PrivateRoute path="/new-order" component = {NewOrder} />
           </Switch>
         </AuthProvider>
