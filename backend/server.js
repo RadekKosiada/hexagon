@@ -1,9 +1,14 @@
 const express = require("express");
 const app = express();
+const cookieParser= require("cookie-parser");
+const bodyParser = require("body-parser");
 const port = 3001;
 const secrects = require("./secrets");
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
+
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
