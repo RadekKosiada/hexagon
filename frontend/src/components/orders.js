@@ -49,9 +49,14 @@ export default function Order() {
     // history.push("/orderDetails/" + orderId);
   }
 
+  function goToNewOrder() {
+    history.push("/new-order");
+  }
+
   return (
     <div>
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={goToNewOrder}>New Order</button>
       <div 
       key={0} 
       data-id={0}
