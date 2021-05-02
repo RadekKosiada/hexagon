@@ -46,8 +46,8 @@ export default function Order() {
   return (
     <div>
       <button onClick={handleLogout}>Logout</button>
-      <p>{currentUser.uid}</p>
-      <p>{bookingDate}</p>
+      <p>Order title: {title}</p>
+      <p>Booking date: {bookingDate}</p>
       <p>{title}</p>
     </div>
   );
