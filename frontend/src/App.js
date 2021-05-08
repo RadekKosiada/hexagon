@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginForm from "./components/login";
+import Orders from "./components/orders";
+import OrderDetails from "./components/orderDetails";
+import NewOrder from "./components/newOrder";
+import PrivateRoute from "./components/privateRoute";
+import { AuthProvider } from "./contexts/authContext";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <LoginForm /> */}
+      <BrowserRouter>
+        <AuthProvider>
+          <Switch>
+            <Route exact path="/" component={LoginForm} />
+            <PrivateRoute path="/orders" component={Orders} />
+            <PrivateRoute path={"/order-details/:id" } component={OrderDetails} />
+            <PrivateRoute path="/new-order" component = {NewOrder} />
+          </Switch>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }
